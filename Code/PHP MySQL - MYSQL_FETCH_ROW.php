@@ -1,18 +1,15 @@
 <?php
-$con = mysqli_connect("localhost", "root", ""); 
-if (!$con)
-{
-    die('Could not connect: ' . mysqli_error()); 
+$con = mysqli_connect("localhost", "root", "root", "myDB");
+if (!$con) {
+    die('Could not connect: ' . mysqli_connect_error());
 }
-$db_selected = mysqli_select_db("test",$con);
 
-$result = mysqli_query("SELECT course,batch FROM student WHERE name = 'student5'");
-if (!$result) 
-{
-    echo 'Could not run query: ' . mysqli_error();
-    exit;
+$result = mysqli_query($con, "SELECT Course,FirstName FROM student WHERE Location = 'Ohio'");
+if (!$result) {
+    echo 'Could not run query: ' . mysqli_error($con);
 }
 $row = mysqli_fetch_row($result);
-echo $row[0]; 
-echo $row[1]; 
+echo "<b>Course : </b>" . $row[0];
+echo "<br>";
+echo "<b>FirstName: </b>" . $row[1];
 ?>

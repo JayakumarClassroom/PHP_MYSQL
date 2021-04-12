@@ -1,21 +1,13 @@
- <?php
- $servername = "localhost";
- $username = "jay";
- $password = "";
- 
- // Create connection
- $conn = mysqli_connect($servername, $username, $password);
- // Check connection
- if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+<?php
+$con = mysqli_connect("localhost", "root", "root");
+if (!$con) {
+    die('Could not connect: ' . mysqli_connect_error());
 }
-
-// Create database
 $sql = "CREATE DATABASE myDB";
-if (mysqli_query($conn, $sql)) {
+if (mysqli_query($con, $sql)) {
     echo "Database created successfully";
 } else {
-    echo "Error creating database: " . mysqli_error($conn);
+    echo "Error creating database:  " . mysqli_errno($con);
 }
 
 mysqli_close($conn);

@@ -2,10 +2,11 @@ INSERT INTO TABLE FORM
 <html>
 
 <body>
-    <form action="insertinto_table.php" method="post">
+    <form action="mysql.php" method="post">
         firstname: <input type="text" name="firstname" />
-        lastname:<input type="text" name="lastname" />
-        Age: <input type="text" name="age" />
+        <br> lastname: <input type="text" name="lastname" />
+        <br> Age: <input type="text" name="age" />
+        <br>
         <input type="submit" name="submit" value="Submit" />
     </form>
 </body>
@@ -14,16 +15,15 @@ INSERT INTO TABLE FORM
 
 // INSERT INTO TABLE PHP
 <?php
-$con = mysqli_connect("localhost","root",""); 
-if (!$con)
-{
-    die('Could not connect: ' . mysqli_error()); }
-    mysqli_select_db("sample", $con);
-    $sql="INSERT INTO student (FirstName, LastName, Age) VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[age]')";
-    if (!mysqli_query($sql,$con))
-    {
-        die('Error: ' . mysqli_error());
-    }
-    echo "1 record added";
-    mysqli_close($con)
-    ?>
+$con = mysqli_connect("localhost", "root", "root", "myDB");
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error($con));
+}
+//Inserting to Database via HTML Table
+$sql = "INSERT INTO student (FirstName, LastName, Age) VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[age]')";
+if (!mysqli_query($con, $sql)) {
+    die('Error: ' . mysqli_error($con));
+}
+echo "1 record added";
+mysqli_close($con);
+?>

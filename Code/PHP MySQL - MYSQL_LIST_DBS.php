@@ -1,13 +1,15 @@
 <?php
-$con = mysqli_connect("localhost", "root", ""); 
-if (!$con)
-{
-    die('Could not connect: ' . mysqli_error()); 
+$con = mysqli_connect("localhost", "root", "root");
+if (!$con) {
+    die('Could not connect: ' . mysqli_connect_error());
+} else {
+    echo "connected";
 }
-$db_list = mysqli_list_dbs($con);
-while ($db = mysqli_fetch_object($db_list))
-{
+$db_list = mysqli_query($con, "SHOW DATABASES");
+echo "<hr>";
+while ($db = mysqli_fetch_object($db_list)) {
     echo $db->Database . "<br />";
 }
-mysqli_close($con); 
+
+mysqli_close($con);
 ?>

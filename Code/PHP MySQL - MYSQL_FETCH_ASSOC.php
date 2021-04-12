@@ -1,20 +1,17 @@
 <?php
-$con = mysqli_connect("localhost", "root", ""); 
-if (!$con)
-{
-    die('Could not connect: ' . mysqli_error());
+$con = mysqli_connect("localhost", "root", "root", "myDB");
+if (!$con) {
+    die('Could not connect: ' . mysqli_connect_error());
 }
 
-$db_selected = mysqli_select_db("test",$con);
-
-$result = mysqli_query("SELECT course,batch FROM student WHERE name = 'student5'");
-if (!$result)
-{
-    echo 'Could not run query: ' . mysqli_error();
-    exit;
+$result = mysqli_query($con, "SELECT Course, Location FROM student WHERE FirstName = 'Jaya'");
+if (!$result) {
+    echo 'Could not run query: ' . mysqli_error($con);
+    exit();
 }
+//Assocaiate Array
 $row = mysqli_fetch_assoc($result);
-echo $row[course]; 
+echo $row[Course];
 echo "<br>";
-echo $row[batch]; 
+echo $row[Location];
 ?>

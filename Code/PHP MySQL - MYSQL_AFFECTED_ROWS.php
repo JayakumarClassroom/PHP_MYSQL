@@ -1,12 +1,11 @@
 <?php
-$con = mysqli_connect("localhost","root",""); 
-if (!$con)
-{
-    die("Could not connect: " . mysqli_error()); 
+$con = mysqli_connect("localhost", "root", "root", "myDB");
+if (!$con) {
+    die("Could not connect: " . mysqli_connect_error($con));
 }
-mysqli_select_db("test");
-mysqli_query("DELETE FROM student WHERE student_ID = 11"); 
-$rc = mysqli_affected_rows();
+$sql = "DELETE FROM student WHERE FirstName = 'Jaya'";
+$exe = mysqli_query($con, $sql);
+$rc = mysqli_affected_rows($con);
 echo "Records deleted: " . $rc;
-mysqli_close($con); 
+mysqli_close($con);
 ?>
