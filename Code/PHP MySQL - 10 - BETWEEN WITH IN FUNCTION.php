@@ -1,6 +1,6 @@
 <?php
 // Create connection
-$con = mysqli_connect(localhost, 'root', 'root', 'myDB');
+$con = mysqli_connect('localhost', 'root', 'root', 'myDB');
 
 // Check connection
 if (!$con) {
